@@ -1,0 +1,8 @@
+# Optional GPU backend for NVIDIA CUDA systems.
+cupy-cuda12x>=14.0.0
+# These small runtime components are needed on hosts that have the NVIDIA
+# driver but do not have a full CUDA toolkit installation. Hosts with a
+# system CUDA toolkit may already provide equivalent libraries.
+nvidia-cuda-runtime-cu12>=12.9,<13
+nvidia-cuda-nvrtc-cu12>=12.9,<13
+nvidia-cublas-cu12>=12.9,<13

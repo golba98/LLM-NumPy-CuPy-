@@ -1,0 +1,49 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.venv/
+venv/
+env/
+
+# Generated training data and large artifacts
+data/raw/
+data/processed/
+data/tokenized/
+runs/
+!runs/
+runs/*
+!runs/README.md
+logs/
+*.npz
+*.npz.sha256
+*.bin
+*.tmp.npz
+*.tmp.sha256
+
+# Keep local datasets, checkpoints, and experiment output out of GitHub.
+# Store large model files in external artifact storage and document their
+# checksums/lineage in small text or JSON manifests instead.
+data/
+!data/
+data/*
+!data/README.md
+checkpoints/
+artifacts/
+outputs/
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+
+# Local build and profiling output
+cpp/build/
+*.prof
+*.nsys-rep
+*.sqlite
+
+# Local OS/editor files
+.DS_Store
+Thumbs.db
+*.swp
+*~

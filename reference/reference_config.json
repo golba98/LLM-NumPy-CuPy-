@@ -1,0 +1,15 @@
+{
+  "seed": 42,
+  "vocab_size": 32,
+  "max_seq_len": 8,
+  "context_length": 4,
+  "num_layers": 1,
+  "dim": 8,
+  "num_heads": 2,
+  "hidden_dim": 16,
+  "tie_embeddings": true,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0,
+  "dtype": "float64",
+  "format_version": 1
+}
