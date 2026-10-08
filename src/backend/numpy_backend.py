@@ -1,5 +1,5 @@
-"""Compatibility export for the NumPy backend."""
-
-import numpy as xp
-
-__all__ = ["xp"]
+"""Legacy import adapter preserving the canonical module object."""
+import importlib
+import sys
+_implementation = importlib.import_module('llm_numpy.backend.numpy_backend')
+sys.modules[__name__] = _implementation

@@ -1,7 +1,10 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.parameter import Parameter
-from src.optim.clip import clip_grad_norm_
+from llm_numpy.parameter import Parameter
+from llm_numpy.optim.clip import clip_grad_norm_
 
 def test_clip_grad_norm_above_threshold():
     p1 = Parameter([3.0, 4.0]) # norm = 5.0

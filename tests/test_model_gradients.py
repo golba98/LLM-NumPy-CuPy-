@@ -1,9 +1,12 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.config import LLMConfig
-from src.nn.model import TinyLLM, language_model_loss
-from src.tensor import Tensor
-from src.utils.gradcheck import gradcheck
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM, language_model_loss
+from llm_numpy.tensor import Tensor
+from llm_numpy.utils.gradcheck import gradcheck
 
 def test_tiny_llm_full_backward_and_finite_gradients():
     cfg = LLMConfig(vocab_size=16, max_seq_len=32, dim=8, num_layers=2, num_heads=2, hidden_dim=16, tie_embeddings=True)

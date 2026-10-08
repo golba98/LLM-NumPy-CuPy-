@@ -1,9 +1,12 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.tensor import Tensor
-from src.nn.transformer import TransformerBlock
-from src.nn.module import count_parameters
-from src.utils.gradcheck import gradcheck
+from llm_numpy.tensor import Tensor
+from llm_numpy.nn.transformer import TransformerBlock
+from llm_numpy.nn.module import count_parameters
+from llm_numpy.utils.gradcheck import gradcheck
 
 def test_transformer_block_forward_backward_and_params():
     block = TransformerBlock(dim=8, num_heads=2, hidden_dim=16, max_seq_len=64)

@@ -1,10 +1,5 @@
-"""Lazy CuPy compatibility export."""
-
-from src.backend import get_backend
-
-
-def get_xp():
-    return get_backend("cuda").xp
-
-
-__all__ = ["get_xp"]
+"""Legacy import adapter preserving the canonical module object."""
+import importlib
+import sys
+_implementation = importlib.import_module('llm_numpy.backend.cuda_backend')
+sys.modules[__name__] = _implementation

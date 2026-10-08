@@ -1,9 +1,12 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.tensor import Tensor
-from src.losses.mse import mse_loss
-from src.losses.cross_entropy import cross_entropy_loss, softmax
-from src.utils.gradcheck import gradcheck
+from llm_numpy.tensor import Tensor
+from llm_numpy.losses.mse import mse_loss
+from llm_numpy.losses.cross_entropy import cross_entropy_loss, softmax
+from llm_numpy.utils.gradcheck import gradcheck
 
 def test_mse_loss():
     y_pred = Tensor([2.0, 3.0], requires_grad=True)

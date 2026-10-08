@@ -1,6 +1,9 @@
 """Run a small assistant-loss-masked SFT pilot from a pretrained checkpoint."""
 
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 
 import argparse
 import json
@@ -12,17 +15,17 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from examples.train_general import architecture
-from src.config import LLMConfig
-from src.data.sft import conversation_to_example
-from src.losses.masked_cross_entropy import masked_cross_entropy_loss
-from src.nn.model import TinyLLM
-from src.optim.adamw import AdamW
-from src.optim.clip import clip_grad_norm_
-from src.tokenization.bpe import ByteLevelBPETokenizer
-from src.training.checkpoint import load_checkpoint, save_checkpoint
-from src.training.config import TrainingConfig
-from src.utils.seed import set_seed
+from llm_numpy.model_presets import architecture
+from llm_numpy.config import LLMConfig
+from llm_numpy.data.sft import conversation_to_example
+from llm_numpy.losses.masked_cross_entropy import masked_cross_entropy_loss
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.optim.adamw import AdamW
+from llm_numpy.optim.clip import clip_grad_norm_
+from llm_numpy.tokenization.bpe import ByteLevelBPETokenizer
+from llm_numpy.training.checkpoint import load_checkpoint, save_checkpoint
+from llm_numpy.training.config import TrainingConfig
+from llm_numpy.utils.seed import set_seed
 
 
 CONVERSATIONS = (
@@ -48,7 +51,8 @@ def main() -> None:
     parser.add_argument("--steps", type=int, default=20)
     parser.add_argument("--learning-rate", type=float, default=1e-4)
     parser.add_argument("--output-dir", type=Path, default=Path("runs/sft-pilot"))
-    args = parser.parse_args()
+    from llm_numpy.assets import normalize_arguments
+    args = normalize_arguments(parser.parse_args())
     set_seed(42)
     manifest = json.loads(args.manifest.read_text())
     tokenizer = ByteLevelBPETokenizer.from_file(manifest["tokenizer"]["path"])

@@ -1,8 +1,11 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import json
 import numpy as np
 
-from src.data.pipeline import RawDocument, build_token_cache, normalize_text, open_token_shard, prepare_documents
-from src.tokenization.bpe import ByteLevelBPETokenizer
+from llm_numpy.data.pipeline import RawDocument, build_token_cache, normalize_text, open_token_shard, prepare_documents
+from llm_numpy.tokenization.bpe import ByteLevelBPETokenizer
 
 
 def test_prepare_documents_normalizes_deduplicates_and_splits_deterministically():

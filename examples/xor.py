@@ -1,16 +1,19 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import numpy as np
-from src.tensor import Tensor
+from llm_numpy.tensor import Tensor
 
-from src.nn.module import Module
-from src.nn.linear import Linear
-from src.nn.sequential import Sequential
-from src.losses.mse import mse_loss
-from src.optim.adam import Adam
-from src.utils.seed import set_seed
+from llm_numpy.nn.module import Module
+from llm_numpy.nn.linear import Linear
+from llm_numpy.nn.sequential import Sequential
+from llm_numpy.losses.mse import mse_loss
+from llm_numpy.optim.adam import Adam
+from llm_numpy.utils.seed import set_seed
 
 class XORNet(Module):
     def __init__(self):

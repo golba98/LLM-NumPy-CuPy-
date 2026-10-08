@@ -7,6 +7,9 @@ and persisted as memmap-friendly shards.
 """
 
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 
 import argparse
 import html
@@ -17,7 +20,7 @@ from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.data.pipeline import RawDocument, build_token_cache, prepare_documents, read_documents, write_documents
+from llm_numpy.data.pipeline import RawDocument, build_token_cache, prepare_documents, read_documents, write_documents
 from examples.prepare_general_corpus import _strip_html
 
 
@@ -127,7 +130,8 @@ def main() -> None:
     parser.add_argument("--per-document-characters", type=int, default=180_000)
     parser.add_argument("--vocab-size", type=int, default=16_384)
     parser.add_argument("--tokenizer-sample-characters", type=int, default=2_000_000)
-    args = parser.parse_args()
+    from llm_numpy.assets import normalize_arguments
+    args = normalize_arguments(parser.parse_args())
 
     documents = [RawDocument(item.source, item.text, item.title)
                  for item in read_documents(args.base_documents)]

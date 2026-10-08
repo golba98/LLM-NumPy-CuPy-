@@ -1,8 +1,11 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.tensor import Tensor
-from src.nn.embedding import Embedding
-from src.utils.gradcheck import gradcheck
+from llm_numpy.tensor import Tensor
+from llm_numpy.nn.embedding import Embedding
+from llm_numpy.utils.gradcheck import gradcheck
 
 def test_embedding_lookup_shape_and_params():
     emb = Embedding(num_embeddings=100, embedding_dim=16)

@@ -1,7 +1,10 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.parameter import Parameter
-from src.optim.adamw import AdamW
+from llm_numpy.parameter import Parameter
+from llm_numpy.optim.adamw import AdamW
 
 def test_adamw_reference_numerical_update():
     p = Parameter([1.0, -2.0])

@@ -1,5 +1,8 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
-from src.config import LLMConfig
+from llm_numpy.config import LLMConfig
 
 def test_valid_llm_config():
     cfg = LLMConfig(vocab_size=100, max_seq_len=64, dim=32, num_layers=2, num_heads=4, hidden_dim=88)

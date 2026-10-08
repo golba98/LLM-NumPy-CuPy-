@@ -1,3 +1,2 @@
-from src.tokenization.bpe import ByteBPETokenizer, ByteLevelBPETokenizer
-
-__all__ = ["ByteBPETokenizer", "ByteLevelBPETokenizer"]
+"""Legacy import adapter; implementations live in llm_numpy."""
+from llm_numpy.tokenization import *

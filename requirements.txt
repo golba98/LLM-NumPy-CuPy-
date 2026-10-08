@@ -1,2 +1,1 @@
-numpy>=1.20.0
-pytest>=7.0.0
+-r requirements.lock

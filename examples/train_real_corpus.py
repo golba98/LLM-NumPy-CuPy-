@@ -1,18 +1,21 @@
 """Bounded real-corpus validation; corpus acquisition stays outside the framework."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import argparse
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.config import LLMConfig
-from src.data import DataLoader, LanguageModelDataset, TextCorpus
-from src.nn.model import TinyLLM
-from src.optim.adamw import AdamW
-from src.tokenization import ByteLevelBPETokenizer
-from src.training.config import TrainingConfig
-from src.training.metrics import token_accuracy
-from src.training.trainer import Trainer
-from src.utils.seed import set_seed
+from llm_numpy.config import LLMConfig
+from llm_numpy.data import DataLoader, LanguageModelDataset, TextCorpus
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.optim.adamw import AdamW
+from llm_numpy.tokenization import ByteLevelBPETokenizer
+from llm_numpy.training.config import TrainingConfig
+from llm_numpy.training.metrics import token_accuracy
+from llm_numpy.training.trainer import Trainer
+from llm_numpy.utils.seed import set_seed
 
 
 def main() -> None:
@@ -24,7 +27,8 @@ def main() -> None:
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--gradient-accumulation", type=int, default=1)
-    args = parser.parse_args()
+    from llm_numpy.assets import normalize_arguments
+    args = normalize_arguments(parser.parse_args())
     set_seed(args.seed)
     corpus = TextCorpus.from_file(args.input)
     train_corpus, val_corpus = corpus.split(0.9)

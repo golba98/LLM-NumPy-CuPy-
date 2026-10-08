@@ -1,13 +1,16 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import pytest
 import numpy as np
-from src.config import LLMConfig
-from src.nn.model import TinyLLM, language_model_loss
-from src.optim.adamw import AdamW
-from src.optim.clip import clip_grad_norm_
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM, language_model_loss
+from llm_numpy.optim.adamw import AdamW
+from llm_numpy.optim.clip import clip_grad_norm_
 
 def test_single_training_step_parameter_mutation_and_loss_reduction():
     cfg = LLMConfig(vocab_size=16, max_seq_len=16, dim=16, num_layers=1, num_heads=2, hidden_dim=32)

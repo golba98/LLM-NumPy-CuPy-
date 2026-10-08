@@ -1,6 +1,9 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.nn.model import shift_for_next_token
+from llm_numpy.nn.model import shift_for_next_token
 
 def test_shift_for_next_token_alignment():
     tokens = np.array([[10, 20, 30, 40, 50]])

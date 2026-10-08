@@ -1,10 +1,13 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import pytest
 import numpy as np
-from src.generation.sampler import greedy_decode, top_k_sampling, top_p_sampling
+from llm_numpy.generation.sampler import greedy_decode, top_k_sampling, top_p_sampling
 
 def test_greedy_decode():
     logits = np.array([1.0, 5.0, 2.0, 0.5])

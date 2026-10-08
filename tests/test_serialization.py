@@ -1,9 +1,12 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import os
 import numpy as np
-from src.config import LLMConfig
-from src.nn.model import TinyLLM
-from src.utils.serialization import save_weights, load_weights
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.utils.serialization import save_weights, load_weights
 
 def test_save_load_weights_roundtrip(tmp_path):
     cfg = LLMConfig(vocab_size=16, max_seq_len=32, dim=8, num_layers=1, num_heads=2, hidden_dim=16, tie_embeddings=True)

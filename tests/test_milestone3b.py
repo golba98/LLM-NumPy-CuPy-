@@ -1,10 +1,13 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import numpy as np
 
-from src.data import DataLoader, LanguageModelDataset, TextCorpus
-from src.generation.sampler import top_k_sampling, top_p_sampling
-from src.tokenization import ByteLevelBPETokenizer
-from src.training.metrics import token_accuracy
-from src.training.schedules import learning_rate
+from llm_numpy.data import DataLoader, LanguageModelDataset, TextCorpus
+from llm_numpy.generation.sampler import top_k_sampling, top_p_sampling
+from llm_numpy.tokenization import ByteLevelBPETokenizer
+from llm_numpy.training.metrics import token_accuracy
+from llm_numpy.training.schedules import learning_rate
 
 
 def test_byte_bpe_is_deterministic_and_lossless(tmp_path):

@@ -1,6 +1,9 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 
-from src.training.config import TrainingConfig
+from llm_numpy.training.config import TrainingConfig
 
 
 def test_training_config_rejects_invalid_gradient_guard_values():
