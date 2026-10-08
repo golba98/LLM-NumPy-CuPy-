@@ -1,9 +1,12 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.tensor import Tensor
-from src.losses.cross_entropy import cross_entropy_loss
-from src.nn.model import language_model_loss, perplexity
-from src.utils.gradcheck import gradcheck
+from llm_numpy.tensor import Tensor
+from llm_numpy.losses.cross_entropy import cross_entropy_loss
+from llm_numpy.nn.model import language_model_loss, perplexity
+from llm_numpy.utils.gradcheck import gradcheck
 
 def test_hand_calculated_cross_entropy_reference():
     # Logits: [2.0, 1.0, 0.0], target: 0

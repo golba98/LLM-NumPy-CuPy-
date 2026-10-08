@@ -1,7 +1,10 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.tensor import Tensor, unbroadcast
-from src.ops.basic import add, sub, mul, div, neg, pow_op, sum_op, mean_op, reshape_op, transpose_op
+from llm_numpy.tensor import Tensor, unbroadcast
+from llm_numpy.ops.basic import add, sub, mul, div, neg, pow_op, sum_op, mean_op, reshape_op, transpose_op
 
 def test_unbroadcast_scalar():
     grad = np.ones((3, 3), dtype=np.float64)

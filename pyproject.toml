@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codexa-numpy"
+version = "0.2.0"
+description = "Independent NumPy/CuPy Tensor, autograd and decoder-only language model"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.4,<3"]
+
+[project.optional-dependencies]
+test = ["pytest>=9,<10"]
+cuda = ["cupy-cuda12x>=14,<15"]
+
+[project.scripts]
+codexa-numpy-environment-report = "llm_numpy.cli.environment_report:main"
+codexa-numpy-inspect-checkpoint = "llm_numpy.cli.inspect_checkpoint:main"
+codexa-numpy-preflight-training = "llm_numpy.cli.preflight_training:main"
+codexa-numpy-production-dry-run = "llm_numpy.cli.production_dry_run:main"
+codexa-numpy-rebuild-clean-corpus = "llm_numpy.cli.rebuild_clean_corpus:main"
+codexa-numpy-build-fineweb-10m-corpus = "llm_numpy.cli.build_fineweb_10m_corpus:main"
+codexa-numpy-build-fineweb-followup = "llm_numpy.cli.build_fineweb_followup:main"
+codexa-numpy-chat-codexa = "llm_numpy.cli.chat_codexa:main"
+codexa-numpy-codexa-cupy-bridge = "llm_numpy.cli.codexa_cupy_bridge:main"
+codexa-numpy-prepare-chat-sft-numpy = "llm_numpy.cli.prepare_chat_sft_numpy:main"
+codexa-numpy-train-chat-sft-numpy = "llm_numpy.cli.train_chat_sft_numpy:main"
+codexa-numpy-prepare-next-chat-batch = "llm_numpy.cli.prepare_next_chat_batch:main"
+codexa-numpy-train-general = "llm_numpy.cli.train_general:main"
+codexa-numpy-evaluate-general = "llm_numpy.cli.evaluate_general:main"
+codexa-numpy-train-tiny-llm = "llm_numpy.cli.train_tiny_llm:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["llm_numpy*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]

@@ -17,6 +17,7 @@ runs/*
 logs/
 *.npz
 *.npz.sha256
+!reference/*.npz
 *.bin
 *.tmp.npz
 *.tmp.sha256
@@ -47,3 +48,11 @@ cpp/build/
 Thumbs.db
 *.swp
 *~
+
+artifacts.local.json
+outputs/
+validation/
+*.egg-info/
+build/
+dist/
+preservation/

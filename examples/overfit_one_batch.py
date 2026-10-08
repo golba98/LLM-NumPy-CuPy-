@@ -1,16 +1,19 @@
 """Demonstrate that the complete custom model can memorize one fixed batch."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import numpy as np
 
-from src.config import LLMConfig
-from src.nn.model import TinyLLM, perplexity
-from src.optim.adamw import AdamW
-from src.optim.clip import clip_grad_norm_
-from src.training.metrics import token_accuracy
-from src.utils.seed import set_seed
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM, perplexity
+from llm_numpy.optim.adamw import AdamW
+from llm_numpy.optim.clip import clip_grad_norm_
+from llm_numpy.training.metrics import token_accuracy
+from llm_numpy.utils.seed import set_seed
 
 
 def main() -> None:

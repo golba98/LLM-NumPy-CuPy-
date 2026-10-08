@@ -6,6 +6,9 @@ spending time without changing the production model.
 """
 
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 
 import json
 import sys
@@ -17,12 +20,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import numpy as np
 
-import src.nn.attention as attention_module
-from src.backend import describe, synchronize, to_device
-from src.config import LLMConfig
-from src.nn.model import TinyLLM
-from src.tensor import no_grad
-from src.utils.seed import set_seed
+import llm_numpy.nn.attention as attention_module
+from llm_numpy.backend import describe, synchronize, to_device
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.tensor import no_grad
+from llm_numpy.utils.seed import set_seed
 
 
 def main() -> None:

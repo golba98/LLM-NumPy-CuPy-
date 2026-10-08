@@ -1,6 +1,9 @@
 """Bounded lifecycle validation for the exact 240.9M target model."""
 
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 
 import argparse
 import json
@@ -12,14 +15,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import numpy as np
 
-from src.backend import describe, memory_stats, synchronize, to_cpu, to_device
-from src.config import LLMConfig
-from src.nn.model import TinyLLM
-from src.optim.adamw import AdamW
-from src.optim.clip import clip_grad_norm_
-from src.training.checkpoint import load_checkpoint, save_checkpoint
-from src.training.config import TrainingConfig
-from src.utils.seed import set_seed
+from llm_numpy.backend import describe, memory_stats, synchronize, to_cpu, to_device
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.optim.adamw import AdamW
+from llm_numpy.optim.clip import clip_grad_norm_
+from llm_numpy.training.checkpoint import load_checkpoint, save_checkpoint
+from llm_numpy.training.config import TrainingConfig
+from llm_numpy.utils.seed import set_seed
 
 
 def main() -> None:
@@ -31,7 +34,8 @@ def main() -> None:
     parser.add_argument("--loss-scale", type=float, default=None)
     parser.add_argument("--checkpoint", type=Path,
                         default=Path("runs/benchmarks/target_lifecycle.npz"))
-    args = parser.parse_args()
+    from llm_numpy.assets import normalize_arguments
+    args = normalize_arguments(parser.parse_args(), output_keys=("checkpoint",))
     dtype_name = args.dtype
     dtype = np.float16 if dtype_name == "float16" else np.float32
     loss_scale = args.loss_scale if args.loss_scale is not None else (128.0 if dtype_name == "float16" else 1.0)

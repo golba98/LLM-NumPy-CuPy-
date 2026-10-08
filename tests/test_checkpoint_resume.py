@@ -1,3 +1,6 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -6,14 +9,14 @@ import json
 import pytest
 import os
 import numpy as np
-from src.config import LLMConfig
-from src.nn.model import TinyLLM
-from src.optim.adamw import AdamW
-from src.data import DataLoader, LanguageModelDataset
-from src.training.checkpoint import save_checkpoint, load_checkpoint
-from src.training.config import TrainingConfig
-from src.training.trainer import Trainer
-from src.utils.seed import set_seed
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.optim.adamw import AdamW
+from llm_numpy.data import DataLoader, LanguageModelDataset
+from llm_numpy.training.checkpoint import save_checkpoint, load_checkpoint
+from llm_numpy.training.config import TrainingConfig
+from llm_numpy.training.trainer import Trainer
+from llm_numpy.utils.seed import set_seed
 
 def test_full_checkpoint_resume_equivalence(tmp_path):
     cfg = LLMConfig(vocab_size=16, max_seq_len=16, dim=8, num_layers=1, num_heads=2, hidden_dim=16, tie_embeddings=True)

@@ -1,6 +1,9 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import os
-from src.tokenization.bpe import ByteLevelBPETokenizer
+from llm_numpy.tokenization.bpe import ByteLevelBPETokenizer
 
 def test_tokenizer_bpe_training_and_roundtrip():
     corpus = "The cat sat on the mat. The dog sat on the rug. The cat slept. The dog slept."

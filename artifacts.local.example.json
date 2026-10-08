@@ -1,0 +1,7 @@
+{
+  "asset_root": "/protected/storage/numpy/current",
+  "historical_roots": [
+    "/protected/storage/numpy/historical-local"
+  ],
+  "output_root": "outputs"
+}

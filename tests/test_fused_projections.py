@@ -1,9 +1,12 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import numpy as np
 
-from src.nn.attention import MultiHeadSelfAttention
-from src.nn.ffn import SwiGLU
-from src.tensor import Tensor
-from src.utils.seed import set_seed
+from llm_numpy.nn.attention import MultiHeadSelfAttention
+from llm_numpy.nn.ffn import SwiGLU
+from llm_numpy.tensor import Tensor
+from llm_numpy.utils.seed import set_seed
 
 
 def _copy_parameters(source, target):

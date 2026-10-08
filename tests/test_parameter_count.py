@@ -1,7 +1,10 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
-from src.config import LLMConfig
-from src.nn.model import TinyLLM
-from src.nn.module import count_parameters
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.nn.module import count_parameters
 
 def test_parameter_count_formula_matches_programmatic_count():
     # Tied configuration

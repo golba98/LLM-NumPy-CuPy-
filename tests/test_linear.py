@@ -1,8 +1,11 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.tensor import Tensor
-from src.nn.linear import Linear
-from src.utils.gradcheck import gradcheck
+from llm_numpy.tensor import Tensor
+from llm_numpy.nn.linear import Linear
+from llm_numpy.utils.gradcheck import gradcheck
 
 def test_linear_initialization_and_forward():
     layer = Linear(10, 5)

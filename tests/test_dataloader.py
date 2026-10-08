@@ -1,7 +1,10 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.data.dataset import LanguageModelDataset
-from src.data.dataloader import DataLoader
+from llm_numpy.data.dataset import LanguageModelDataset
+from llm_numpy.data.dataloader import DataLoader
 
 def test_dataloader_batch_shapes_and_reproducible_shuffling():
     tokens = list(range(100))

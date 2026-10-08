@@ -1,4 +1,7 @@
 """Deterministic CPU timing baseline for the NumPy TinyLLM."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import platform
 import sys
 import time
@@ -9,13 +12,13 @@ import numpy as np
 import argparse
 import json
 
-from src.config import LLMConfig
-from src.backend import describe, synchronize, to_device
-from src.nn.model import TinyLLM
-from src.optim.adamw import AdamW
-from src.optim.clip import clip_grad_norm_
-from src.training.profiler import StepProfiler
-from src.utils.seed import set_seed
+from llm_numpy.config import LLMConfig
+from llm_numpy.backend import describe, synchronize, to_device
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.optim.adamw import AdamW
+from llm_numpy.optim.clip import clip_grad_norm_
+from llm_numpy.training.profiler import StepProfiler
+from llm_numpy.utils.seed import set_seed
 
 
 def main() -> None:
@@ -26,7 +29,8 @@ def main() -> None:
     parser.add_argument("--batch", type=int, default=4)
     parser.add_argument("--context", type=int, default=32)
     parser.add_argument("--output", type=Path, default=Path("runs/cuda_backend_baseline.json"))
-    args = parser.parse_args()
+    from llm_numpy.assets import normalize_arguments
+    args = normalize_arguments(parser.parse_args())
     batch, context, vocab = args.batch, args.context, 256
     if args.tier == "tiny":
         config = LLMConfig(vocab_size=vocab, max_seq_len=context, dim=64, num_layers=2,

@@ -1,10 +1,13 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import numpy as np
 import pytest
 
-from src.data.sft import conversation_to_example
-from src.losses.masked_cross_entropy import masked_cross_entropy_loss
-from src.tokenization.bpe import ByteLevelBPETokenizer
-from src.tensor import Tensor
+from llm_numpy.data.sft import conversation_to_example
+from llm_numpy.losses.masked_cross_entropy import masked_cross_entropy_loss
+from llm_numpy.tokenization.bpe import ByteLevelBPETokenizer
+from llm_numpy.tensor import Tensor
 
 
 def test_masked_cross_entropy_ignores_user_positions_and_normalizes_selected_tokens():

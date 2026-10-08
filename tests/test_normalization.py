@@ -1,8 +1,11 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.tensor import Tensor
-from src.nn.norm import LayerNorm, RMSNorm
-from src.utils.gradcheck import gradcheck
+from llm_numpy.tensor import Tensor
+from llm_numpy.nn.norm import LayerNorm, RMSNorm
+from llm_numpy.utils.gradcheck import gradcheck
 
 def test_layernorm_forward_and_params():
     ln = LayerNorm(8)

@@ -1,10 +1,13 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import numpy as np
 import pytest
 
-from src.backend import cuda_available, to_cpu
-from src.config import LLMConfig
-from src.nn.model import TinyLLM
-from src.optim.adamw import AdamW
+from llm_numpy.backend import cuda_available, to_cpu
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.optim.adamw import AdamW
 
 
 pytestmark = pytest.mark.skipif(not cuda_available(), reason="CuPy/CUDA unavailable")

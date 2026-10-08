@@ -1,7 +1,10 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.config import LLMConfig
-from src.nn.model import TinyLLM
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM
 
 def test_full_model_causal_prefix_invariance():
     # End-to-End causal proof through multiple Transformer blocks:

@@ -1,9 +1,12 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.config import LLMConfig
-from src.nn.model import TinyLLM, language_model_loss
-from src.utils.seed import set_seed
-from src.utils.diagnostics import inspect_weights
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM, language_model_loss
+from llm_numpy.utils.seed import set_seed
+from llm_numpy.utils.diagnostics import inspect_weights
 
 def test_initialization_seed_reproducibility():
     cfg = LLMConfig(vocab_size=32, dim=16, num_layers=1, num_heads=2, hidden_dim=32)

@@ -1,6 +1,9 @@
 """Synchronized end-to-end CUDA throughput sweep for the current Transformer."""
 
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 
 import argparse
 import json
@@ -14,12 +17,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import numpy as np
 
-from src.backend import describe, memory_stats, synchronize, to_cpu, to_device
-from src.config import LLMConfig
-from src.nn.model import TinyLLM
-from src.optim.adamw import AdamW
-from src.optim.clip import clip_grad_norm_
-from src.utils.seed import set_seed
+from llm_numpy.backend import describe, memory_stats, synchronize, to_cpu, to_device
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM
+from llm_numpy.optim.adamw import AdamW
+from llm_numpy.optim.clip import clip_grad_norm_
+from llm_numpy.utils.seed import set_seed
 
 
 def target_config(context: int) -> LLMConfig:
@@ -172,7 +175,8 @@ def main() -> None:
     parser.add_argument("--config", action="append", type=parse_config,
                         help="repeatable BATCH:CONTEXT configuration")
     parser.add_argument("--output", type=Path, default=Path("runs/benchmarks/cuda_target_sweep.json"))
-    args = parser.parse_args()
+    from llm_numpy.assets import normalize_arguments
+    args = normalize_arguments(parser.parse_args())
     configurations = args.config or [(1, 16), (1, 32), (1, 64), (1, 128), (2, 32), (2, 64), (4, 32)]
     results = []
     print(json.dumps({"backend": describe("cuda"), "dtype": args.dtype,

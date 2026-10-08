@@ -1,9 +1,12 @@
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
 import pytest
 import numpy as np
-from src.config import LLMConfig
-from src.nn.model import TinyLLM, language_model_loss
-from src.nn.module import count_parameters
-from src.tensor import Tensor
+from llm_numpy.config import LLMConfig
+from llm_numpy.nn.model import TinyLLM, language_model_loss
+from llm_numpy.nn.module import count_parameters
+from llm_numpy.tensor import Tensor
 
 def test_weight_tying_reference_sharing():
     cfg = LLMConfig(vocab_size=16, dim=8, tie_embeddings=True)
